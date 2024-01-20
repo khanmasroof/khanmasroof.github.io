@@ -1,0 +1,72 @@
+.toggle {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1px;
+    background-color: #000;
+    border-radius: 2rem;
+    user-select: none;
+    cursor: pointer;
+    transition: translate 0.3s, background-color 0.8s;
+    
+    &::before {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      content: "";
+      height: calc(100% - 2px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      transition: translate 0.3s, background-color 0.8s;
+      background: #fff;
+    }
+    
+    & input {
+      position: absolute;
+      appearance: none;
+    }
+    
+    & span {
+      position: relative;
+      transition: translate 0.6s ease 0.2s;
+      
+      &:nth-of-type(1) {
+        translate: 0 150%;
+      }
+      
+      &:nth-of-type(2) {
+        translate: 0 0%;
+      }
+    }
+    
+    &:has(input:checked) {
+      background-color: #ddd;
+      
+      & span:nth-of-type(1) {
+        translate: 0 0%;
+      }
+      
+      & span:nth-of-type(2) {
+        translate: 0 -150%;
+      }
+    }
+    
+    &:has(input:checked)::before {
+      translate: 100% 0;
+      background-color: #444;
+    }
+  }
+  
+  /* Use like: */
+  
+  [data-mode="dark"] {
+    & body {
+      background: #000;
+      color: #fff;
+    }
+    & #someSpecificElement {
+      /* Some dark mode styles here */
+    }
+  }
